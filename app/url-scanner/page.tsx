@@ -1,0 +1,2 @@
+import { ScannerForm } from "@/components/ScannerForm";
+export default function Page(){return <main className="mx-auto max-w-5xl px-4 py-12"><h1 className="text-4xl font-black text-navy">URL Scanner</h1><p className="mt-3 text-slate-600">Analyze domain age placeholders, HTTPS, lookalikes, shorteners, suspicious parameters, risky TLDs, and mock threat intelligence.</p><div className="mt-8"><ScannerForm kind="url" label="Suspicious link" placeholder="Paste a bank, payment, delivery, or login URL" /></div></main>}

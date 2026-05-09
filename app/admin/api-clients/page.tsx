@@ -1,0 +1,1 @@
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12"><h1 className="text-4xl font-black text-navy">API Clients</h1><p className="mt-4 rounded-3xl border bg-white p-6 text-slate-600">B2B client management, API keys, quotas, abuse controls, and usage analytics scaffold.</p></main>}

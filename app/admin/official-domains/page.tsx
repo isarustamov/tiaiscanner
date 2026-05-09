@@ -1,0 +1,1 @@
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Official Bank Domains</h1><p className="mt-4 rounded-3xl border bg-white p-6 text-slate-600">Whitelist verified bank and fintech domains to reduce false positives and detect lookalikes.</p></main>}

@@ -1,0 +1,55 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+
+enum Role { USER ADMIN ANALYST API_CLIENT }
+enum ScanKind { URL MESSAGE EMAIL CREDIT }
+enum RiskLevel { LOW MEDIUM HIGH CRITICAL }
+enum ReportStatus { CONFIRMED_SCAM SUSPICIOUS FALSE_POSITIVE SAFE UNDER_INVESTIGATION }
+enum SubscriptionTier { FREE PREMIUM FAMILY BUSINESS ENTERPRISE WHITE_LABEL }
+
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  name String?
+  role Role @default(USER)
+  scans Scan[]
+  reports ReportedThreat[]
+  subscriptionPlanId String?
+  subscriptionPlan SubscriptionPlan? @relation(fields: [subscriptionPlanId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Scan {
+  id String @id @default(cuid())
+  userId String?
+  user User? @relation(fields: [userId], references: [id])
+  kind ScanKind
+  inputHash String
+  maskedInput String
+  riskScore Int
+  riskLevel RiskLevel
+  verdict String
+  urlResult UrlScanResult?
+  messageResult MessageScanResult?
+  emailResult EmailScanResult?
+  createdAt DateTime @default(now())
+}
+
+model UrlScanResult { id String @id @default(cuid()) scanId String @unique scan Scan @relation(fields: [scanId], references: [id]) domain String hasHttps Boolean domainAgeDays Int? isLookalike Boolean redirectCount Int evidence Json technicalDetails Json }
+model MessageScanResult { id String @id @default(cuid()) scanId String @unique scan Scan @relation(fields: [scanId], references: [id]) scamProbability Int redFlags Json safeReply String? evidence Json }
+model EmailScanResult { id String @id @default(cuid()) scanId String @unique scan Scan @relation(fields: [scanId], references: [id]) senderDomain String? replyToMismatch Boolean @default(false) spfResult String? dkimResult String? dmarcResult String? suspiciousAttachments Json maliciousLinks Json evidence Json }
+
+model ReportedThreat { id String @id @default(cuid()) reporterId String? reporter User? @relation(fields: [reporterId], references: [id]) type String value String notes String? status ReportStatus @default(UNDER_INVESTIGATION) reviewedBy String? createdAt DateTime @default(now()) updatedAt DateTime @updatedAt }
+model ThreatIndicator { id String @id @default(cuid()) type String value String @unique severity RiskLevel source String description String? createdAt DateTime @default(now()) }
+model KnownDomain { id String @id @default(cuid()) domain String @unique category String riskLevel RiskLevel source String notes String? createdAt DateTime @default(now()) }
+model OfficialBrandDomain { id String @id @default(cuid()) brand String domain String @unique country String? verifiedAt DateTime? createdAt DateTime @default(now()) }
+model SuspiciousPhoneNumber { id String @id @default(cuid()) phone String @unique country String? riskLevel RiskLevel notes String? createdAt DateTime @default(now()) }
+model ScamPhrase { id String @id @default(cuid()) phrase String language String category String weight Int active Boolean @default(true) createdAt DateTime @default(now()) }
+model ApiClient { id String @id @default(cuid()) name String apiKeyHash String @unique plan SubscriptionTier @default(BUSINESS) active Boolean @default(true) usageLogs ApiUsageLog[] createdAt DateTime @default(now()) }
+model ApiUsageLog { id String @id @default(cuid()) apiClientId String apiClient ApiClient @relation(fields: [apiClientId], references: [id]) endpoint String statusCode Int latencyMs Int createdAt DateTime @default(now()) }
+model AdminUser { id String @id @default(cuid()) email String @unique name String? role Role @default(ADMIN) mfaEnabled Boolean @default(false) createdAt DateTime @default(now()) }
+model SubscriptionPlan { id String @id @default(cuid()) tier SubscriptionTier @unique name String monthlyPrice Int dailyScanLimit Int? apiQuota Int? users User[] createdAt DateTime @default(now()) }
+model AuditLog { id String @id @default(cuid()) actorId String? action String resource String resourceId String? metadata Json? createdAt DateTime @default(now()) }
+model BlogPost { id String @id @default(cuid()) slug String @unique title String excerpt String content String language String @default("en") published Boolean @default(false) createdAt DateTime @default(now()) updatedAt DateTime @updatedAt }
+model Alert { id String @id @default(cuid()) title String body String severity RiskLevel audience String publishedAt DateTime? createdAt DateTime @default(now()) }

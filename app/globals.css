@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f8fbff;
+  color: #07142b;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: #bae6fd; color: #07142b; }

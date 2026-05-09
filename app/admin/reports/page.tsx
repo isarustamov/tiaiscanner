@@ -1,0 +1,2 @@
+const reports=[['secure-kapital-login.example','Confirmed scam','Critical'],['OTP bank SMS','Under investigation','High']];
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Reported Threats</h1><div className="mt-8 overflow-hidden rounded-3xl border bg-white">{reports.map(([value,status,severity])=><div key={value} className="grid gap-3 border-b p-5 md:grid-cols-3"><b>{value}</b><span>{status}</span><span className="font-bold text-red-600">{severity}</span></div>)}</div></main>}

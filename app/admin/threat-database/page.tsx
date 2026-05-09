@@ -1,0 +1,1 @@
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Threat Database</h1><p className="mt-4 rounded-3xl border bg-white p-6 text-slate-600">Manage known scam domains, suspicious phone numbers, sender names, brand impersonation patterns, reported URLs, blocklists, and verified domains.</p></main>}

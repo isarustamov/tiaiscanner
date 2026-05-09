@@ -1,0 +1,2 @@
+import { ScannerForm } from "@/components/ScannerForm";
+export default function Page(){return <main className="mx-auto max-w-5xl px-4 py-12"><h1 className="text-4xl font-black text-navy">SMS / Message Scanner</h1><p className="mt-3 text-slate-600">Check SMS, WhatsApp, Telegram, and social messages for urgency, OTP/CVV/PIN requests, fake banks, fake delivery, and reward hooks.</p><div className="mt-8"><ScannerForm kind="message" label="Message text" placeholder="Your account will be blocked today. Send OTP to verify..." /></div></main>}
