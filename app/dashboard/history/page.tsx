@@ -1,0 +1,1 @@
+export default function Page(){return <main className="mx-auto max-w-6xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Scan History</h1><p className="mt-4 rounded-3xl border bg-white p-6 text-slate-600">Recent scans are retained in-memory for the MVP API process; PostgreSQL persistence is modeled in Prisma.</p></main>}

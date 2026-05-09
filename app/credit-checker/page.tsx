@@ -1,0 +1,2 @@
+import { ScannerForm } from "@/components/ScannerForm";
+export default function Page(){return <main className="mx-auto max-w-5xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Fake Credit Website Checker</h1><p className="mt-3 text-slate-600">Detect unrealistic loan promises, upfront fees, fake license claims, suspicious URLs, and requests for card or login secrets.</p><div className="mt-8"><ScannerForm kind="credit" label="Credit offer or website" placeholder="Instant approval, no credit history, pay processing fee before approval..." /></div></main>}

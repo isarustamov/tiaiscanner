@@ -1,0 +1,1 @@
+export default function Page(){return <main className="mx-auto max-w-6xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Alerts</h1><p className="mt-4 rounded-3xl border bg-white p-6 text-slate-600">Premium scam alerts and threat intelligence notifications will appear here.</p></main>}

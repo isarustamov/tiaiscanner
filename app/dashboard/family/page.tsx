@@ -1,0 +1,1 @@
+export default function Page(){return <main className="mx-auto max-w-6xl px-4 py-12"><h1 className="text-4xl font-black text-navy">Family Protection</h1><p className="mt-4 rounded-3xl border bg-white p-6 text-slate-600">Create elderly protection lists, shared alerts, and scam education assignments.</p></main>}

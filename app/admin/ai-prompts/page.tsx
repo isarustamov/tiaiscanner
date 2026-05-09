@@ -1,0 +1,3 @@
+import { aiGuardrailsSummary } from "@/lib/ai/advisor";
+import { promptTemplates } from "@/lib/ai/prompts";
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12"><h1 className="text-4xl font-black text-navy">AI Prompt Settings</h1><div className="mt-6 rounded-3xl border bg-white p-6"><h2 className="font-bold">Guardrails</h2><p className="mt-2 text-slate-600">{aiGuardrailsSummary()}</p></div><div className="mt-6 grid gap-4 md:grid-cols-2">{Object.entries(promptTemplates).map(([k,v])=><div key={k} className="rounded-2xl border bg-white p-5"><b>{k}</b><p className="mt-2 text-slate-600">{v}</p></div>)}</div></main>}
